@@ -1,10 +1,10 @@
-# 说明
+# Description
 
-这是一个 React Native Styling 库。
+This is a React Native Styling library.
 
-For English version, please click: [English](README.en.md)。
+中文版：[中文](README.md).
 
-## 安装
+## Installation
 
 ```bash
 pnpm add expo-simple-styling
@@ -12,24 +12,25 @@ pnpm add expo-simple-styling
 yarn add expo-simple-styling
 ```
 
-## 依赖包
+## Dependencies
 
 ```bash
 pnpm add zustand @react-navigation/native @react-native-async-storage/async-storage --save-peer
 ```
 
-需要安装的依赖包：
+Required dependencies:
+
 - @react-native-async-storage/async-storage
 - zustand
 - @react-navigation/native
 
-## 使用
+## Usage
 
-> 参考[示例项目](example/)。
+> Refer to the [Example Project](example/).
 
-###  ThemeProvider包裹根组件
+### Wrap Root Component with ThemeProvider
 
-`_layout.tsx`或根页面中用ThemeProvider包裹。
+Wrap in `_layout.tsx` or the root page with ThemeProvider.
 
 ```tsx
 
@@ -42,34 +43,36 @@ import { ThemeProvider } from 'expo-simple-styling';
 </ThemeProvider>
 
 ```
-注意每个app的settingsKey应独一无二，进行区分。
 
-### 主题无关的常用风格
+Note: Each app should have a unique `settingsKey` for differentiation.
+
+### Theme-independent Common Styles
 
 ```tsx
 import {s} from 'expo-simple-styling';
 
-// 例子
+// Example
 ...
 <View style ={s.flexCenter}>
- ...
+  ...
 </View>
 
 ```
 
-###  主题相关的常用风格
-其实这就是明暗颜色自动套用。
+### Theme-dependent Common Styles
 
- ```tsx
+This automatically applies light and dark color schemes.
+
+```tsx
 import { useTheme } from 'expo-simple-styling';
 
-// isDark： true为暗色，false为亮色
-// ts：主题颜色相关的各种style
-// tx：文字相关的各种style
-// cl：颜色数值
+// isDark: true for dark mode, false for light mode
+// ts: various styles related to theme colors
+// tx: various text-related styles
+// cl: color values
  const { isDark, ts, tx, cl } = useTheme();
 
-// 例子
+// Example
 ...
 <View style={ts.box}>
     <Text style= {tx.title}>
