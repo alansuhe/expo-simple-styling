@@ -18,37 +18,51 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
+// 缓存 store 实例，避免重复创建
+const storeCache = new Map<string, ReturnType<typeof createSettingsStore>>()
+
+function getOrCreateStore(settingsKey: string) {
+  if (!storeCache.has(settingsKey)) {
+    storeCache.set(settingsKey, createSettingsStore(settingsKey))
+  }
+  return storeCache.get(settingsKey)!
+}
+
 export function ThemeProvider({
   children,
-  settingsKey = 'suhe_styling_settings', // 默认 key
+  settingsKey = 'suhe_styling_settings',
 }: {
   children: React.ReactNode
   settingsKey?: string
 }) {
-  // 创建一个稳定 hook
-  const useAppSettings = useMemo(() => createSettingsStore(settingsKey), [settingsKey])
+  // 使用缓存的 store
+  const useAppSettings = getOrCreateStore(settingsKey)
   const { themeSetting, updateTheme } = useAppSettings()
-  // if (__DEV__) console.log('[provider] themeSetting', themeSetting)
 
   const systemScheme = useColorScheme()
-  // if (__DEV__) console.log('[provider] systemScheme', systemScheme)
   const resolvedScheme = themeSetting === 'system' ? systemScheme : themeSetting
   const isDark = resolvedScheme === 'dark'
   const currentThemeName = isDark ? 'dark' : 'light'
 
   const cl = colors[currentThemeName]
-  const value = {
+
+  // 缓存 styles，避免每次渲染都调用 StyleSheet.create()
+  const ts = useMemo(() => createStyles(currentThemeName), [currentThemeName])
+  const tx = useMemo(() => createTextStyles(currentThemeName), [currentThemeName])
+
+  // 缓存 context value，避免不必要的消费者重渲染
+  const value = useMemo<ThemeContextValue>(() => ({
     isDark,
     cl,
-    ts: createStyles(currentThemeName),
-    tx: createTextStyles(currentThemeName),
+    ts,
+    tx,
     themeSetting,
     updateTheme
-  }
+  }), [isDark, cl, ts, tx, themeSetting, updateTheme])
 
   const navigationTheme = useMemo(() => {
     const oldNavTheme = isDark ? DarkTheme : DefaultTheme
-    const { tint, bg, fg, mg, warn } = colors[currentThemeName]
+    const { tint, bg, fg, mg, warn } = cl
     return {
       ...oldNavTheme,
       colors: {
@@ -61,7 +75,7 @@ export function ThemeProvider({
         notification: warn,
       },
     }
-  }, [isDark])
+  }, [isDark, cl])
 
   return (
     <ThemeContext.Provider value={value}>
