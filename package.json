@@ -1,7 +1,7 @@
 {
   "name": "expo-simple-styling",
   "version": "0.1.0",
-  "description": "Reuseful styling lib for expo.Simple",
+  "description": "Reuseful styling lib for expo.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -32,7 +32,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace expo-simple-styling-example",
+    "example": "pnpm --filter expo-simple-styling-example run start",
     "clean": "del-cli lib",
     "prepare": "bob build",
     "typecheck": "tsc",
@@ -84,12 +84,15 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@react-navigation/native": "^7.1.26",
+    "zustand": "^5.0.9"
   },
   "workspaces": [
     "example"
   ],
-  "packageManager": "yarn@4.11.0",
+  "packageManager": "pnpm@10.28.0",
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",

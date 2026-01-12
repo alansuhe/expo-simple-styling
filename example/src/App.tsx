@@ -1,20 +1,11 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'expo-simple-styling';
-
-const result = multiply(3, 7);
+import { ThemeProvider } from 'expo-simple-styling';
+import TestPage from './TestPage';
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <ThemeProvider settingsKey="example_app_theme">
+      <TestPage />
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

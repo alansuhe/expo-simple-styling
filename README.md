@@ -1,37 +1,29 @@
-# expo-simple-styling
+# 说明
 
-Reuseful styling lib for expo.Simple
+## 依赖包
 
-## Installation
-
-
-```sh
-npm install expo-simple-styling
+```bash
+pnpm add zustand @react-navigation/native @react-native-async-storage/async-storage --save-peer
 ```
 
+需要安装的依赖包：
+- @react-native-async-storage/async-storage
+- zustand
+- @react-navigation/native
 
-## Usage
+## 使用
 
+`_layout.tsx`或根页面中用ThemeProvider包裹。
 
-```js
-import { multiply } from 'expo-simple-styling';
+```tsx
 
-// ...
+import { ThemeProvider } from '@react-native-simple-styling';
 
-const result = await multiply(3, 7);
+...
+
+<ThemeProvider settingsKey="example_app_theme">
+  <AppContent />
+</ThemeProvider>
+
 ```
-
-
-## Contributing
-
-- [Development workflow](CONTRIBUTING.md#development-workflow)
-- [Sending a pull request](CONTRIBUTING.md#sending-a-pull-request)
-- [Code of conduct](CODE_OF_CONDUCT.md)
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+注意每个app的settingsKey应独一无二，进行区分。
