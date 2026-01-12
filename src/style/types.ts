@@ -1,5 +1,5 @@
 export type Theme = 'dark' | 'light'
-export type ThemeOptions = Theme | 'system';
+export type ThemeOption = Theme | 'system';
 
 export type ThemeColors = {
     pro: string;

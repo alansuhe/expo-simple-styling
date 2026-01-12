@@ -4,7 +4,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider as NavigationThemeProvider } fro
 
 import { createSettingsStore } from './store'
 import { createStyles, createTextStyles } from './index'
-import type { ThemeColors } from './types'
+import type { ThemeColors, ThemeOption } from './types'
 import { colors } from './tokens'
 
 interface ThemeContextValue {
@@ -12,6 +12,8 @@ interface ThemeContextValue {
   cl: ThemeColors
   ts: ReturnType<typeof createStyles>
   tx: ReturnType<typeof createTextStyles>
+  themeSetting: ThemeOption
+  updateTheme?: (theme: ThemeOption) => void
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
@@ -25,22 +27,24 @@ export function ThemeProvider({
 }) {
   // 创建一个稳定 hook
   const useAppSettings = useMemo(() => createSettingsStore(settingsKey), [settingsKey])
-  const themeSetting = useAppSettings((s) => s.theme)
+  const { themeSetting, updateTheme } = useAppSettings()
+  // if (__DEV__) console.log('[provider] themeSetting', themeSetting)
 
   const systemScheme = useColorScheme()
+  // if (__DEV__) console.log('[provider] systemScheme', systemScheme)
   const resolvedScheme = themeSetting === 'system' ? systemScheme : themeSetting
   const isDark = resolvedScheme === 'dark'
   const currentThemeName = isDark ? 'dark' : 'light'
 
-  const value = useMemo(() => {
-    const cl = colors[currentThemeName]
-    return {
-      isDark,
-      cl,
-      ts: createStyles(currentThemeName),
-      tx: createTextStyles(currentThemeName),
-    }
-  }, [isDark])
+  const cl = colors[currentThemeName]
+  const value = {
+    isDark,
+    cl,
+    ts: createStyles(currentThemeName),
+    tx: createTextStyles(currentThemeName),
+    themeSetting,
+    updateTheme
+  }
 
   const navigationTheme = useMemo(() => {
     const oldNavTheme = isDark ? DarkTheme : DefaultTheme
@@ -61,7 +65,9 @@ export function ThemeProvider({
 
   return (
     <ThemeContext.Provider value={value}>
-      <NavigationThemeProvider value={navigationTheme}>{children}</NavigationThemeProvider>
+      <NavigationThemeProvider value={navigationTheme}>
+        {children}
+      </NavigationThemeProvider>
     </ThemeContext.Provider>
   )
 }

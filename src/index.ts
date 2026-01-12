@@ -1,4 +1,5 @@
 export {ThemeProvider, useTheme }  from './style/ThemeProvider'
+export { createSettingsStore } from './style/store'
 export { sp, colors, shadows } from './style/tokens'
 export { s, unitSize } from './style'
-export type { ThemeColors, ThemeOptions, Theme } from './style/types'
+export type { ThemeColors, ThemeOption, Theme } from './style/types'

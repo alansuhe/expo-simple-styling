@@ -27,6 +27,8 @@ export const s = StyleSheet.create({
   justifyStart: { justifyContent: 'flex-start' },
   itemsStart: { alignItems: 'flex-start' },
   selfStart: { alignSelf: 'flex-start' },
+  fullWidth: { width: '100%' },
+  fullHeight: { height: '100%' },
 
   // 单行布局
   row: { flexDirection: 'row', alignItems: 'center' },
