@@ -54,9 +54,10 @@ export const s = StyleSheet.create({
   pb: { paddingBottom: md },
   pl: { paddingLeft: md },
   pr: { paddingRight: md },
-  gl: { gap: lg },
-  gm: { gap: md },
   gs: { gap: sm },
+  gm: { gap: md },
+  gl: { gap: lg },
+  gxl: { gap: xl },
 
   // 文字行高
   textLine: { lineHeight: 22 },
