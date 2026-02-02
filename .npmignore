@@ -1,0 +1,38 @@
+# Development files
+example/
+src/__tests__/
+src/__fixtures__/
+src/__mocks__/
+
+# Config files
+.editorconfig
+.eslintrc
+eslint.config.mjs
+.prettierrc
+tsconfig.json
+tsconfig.build.json
+babel.config.js
+lefthook.yml
+
+# CI/CD
+.github/
+.circleci/
+
+# Documentation
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+CLAUDE.md
+PUBLISH.md
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.log
+.DS_Store

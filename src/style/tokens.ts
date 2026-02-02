@@ -63,7 +63,7 @@ export const shadows: Record<Theme, Object> = {
 export const LINE_COLORS = {
     light: {
         normal: '#999999',
-        young: '#C1C1C1',
+        young: '#cdcdcd',
         oldYin: '#b0e0e6',
         oldYang: '#ffdab9',
     },

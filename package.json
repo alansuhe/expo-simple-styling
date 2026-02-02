@@ -1,12 +1,12 @@
 {
   "name": "expo-simple-styling",
   "version": "0.1.3",
-  "description": "Reuseful styling lib for expo.",
+  "description": "Reusable styling lib for expo.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
     ".": {
-      "source": "./src/index.tsx",
+      "source": "./src/index.ts",
       "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
     },
@@ -42,6 +42,8 @@
   },
   "keywords": [
     "react-native",
+    "expo",
+    "styling",
     "ios",
     "android"
   ],
@@ -92,7 +94,7 @@
   "workspaces": [
     "example"
   ],
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.2",
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
@@ -148,16 +150,5 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
-  },
-  "create-react-native-library": {
-    "type": "library",
-    "languages": "js",
-    "tools": [
-      "jest",
-      "lefthook",
-      "release-it",
-      "eslint"
-    ],
-    "version": "0.56.1"
   }
 }
