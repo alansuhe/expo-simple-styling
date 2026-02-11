@@ -1,8 +1,8 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from 'react-native';
 import { colors, shadows, sp } from './tokens';
-import { type Theme } from "./types";
+import { type Theme } from './types';
 
-const { xs, sm, md, lg, xl } = sp
+const { xs, sm, md, lg, xl } = sp;
 
 // const WindowDimension = Dimensions.get('window');
 const { height, width } = Dimensions.get('window');
@@ -34,10 +34,27 @@ export const s = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center' },
   rowGap: { flexDirection: 'row', alignItems: 'center', gap: md },
   rowGapSm: { flexDirection: 'row', alignItems: 'center', gap: sm },
-  rowGapWarp: { flexDirection: 'row', alignItems: 'center', gap: sm, flexWrap: 'wrap' },
-  rowCenter: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-  rowBetween: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  rowEvenly: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' },
+  rowGapWarp: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: sm,
+    flexWrap: 'wrap',
+  },
+  rowCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rowBetween: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  rowEvenly: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
 
   // 间距
   m: { margin: md },
@@ -64,23 +81,23 @@ export const s = StyleSheet.create({
 
   roundedXs: {
     borderRadius: xs,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   roundedSm: {
     borderRadius: sm,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   rounded: {
     borderRadius: md,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   roundedTop: {
     borderTopLeftRadius: md,
     borderTopRightRadius: md,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   // navigator
@@ -90,23 +107,24 @@ export const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
-})
+});
 
 // themed格式
 export function createStyles(theme: Theme) {
+  const cl = colors[theme];
+  const { fg, bg, aux, mg, act, link, warn, tint, line, modal_bg_trans } = cl;
 
-  const cl = colors[theme]
-  const { fg, bg, aux, mg, act, link, warn, tint, line, modal_bg_trans } = cl
-
-  const shadow = shadows[theme]
+  const shadow = shadows[theme];
 
   return StyleSheet.create({
     shadow,
 
     border_thin: { borderColor: line, borderWidth: StyleSheet.hairlineWidth },
     border: { borderColor: line, borderWidth: 1 },
-    border_bottom_thin: { borderBottomColor: line, borderBottomWidth: StyleSheet.hairlineWidth },
+    border_bottom_thin: {
+      borderBottomColor: line,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+    },
 
     // bg color
     bg_mg: { backgroundColor: mg },
@@ -123,28 +141,40 @@ export function createStyles(theme: Theme) {
     seperator: {
       width: '100%',
       borderTopWidth: StyleSheet.hairlineWidth,
-      borderColor: line
+      borderColor: line,
     },
 
     // boxes
     boxBordered: {
-      borderRadius: md, padding: md, borderColor: line, borderWidth: 1
+      borderRadius: md,
+      padding: md,
+      borderColor: line,
+      borderWidth: 1,
     },
     boxBorderedThin: {
-      borderRadius: md, padding: md, borderColor: line, borderWidth: StyleSheet.hairlineWidth
+      borderRadius: md,
+      padding: md,
+      borderColor: line,
+      borderWidth: StyleSheet.hairlineWidth,
     },
     box: {
-      borderRadius: md, padding: md, backgroundColor: mg
+      borderRadius: md,
+      padding: md,
+      backgroundColor: mg,
     },
     boxFilledBordered: {
-      borderRadius: md, padding: md, backgroundColor: mg, borderColor: line, borderWidth: 1
+      borderRadius: md,
+      padding: md,
+      backgroundColor: mg,
+      borderColor: line,
+      borderWidth: 1,
     },
 
     // cards
     card: {
       borderRadius: md,
       padding: md,
-      backgroundColor: mg
+      backgroundColor: mg,
     },
 
     cardBordered: {
@@ -152,45 +182,63 @@ export function createStyles(theme: Theme) {
       padding: md,
       backgroundColor: mg,
       borderColor: line,
-      borderWidth: StyleSheet.hairlineWidth
+      borderWidth: StyleSheet.hairlineWidth,
     },
 
     //
     badge: {
-      borderRadius: sm, padding: sm, backgroundColor: line, alignSelf: 'flex-start'
+      borderRadius: sm,
+      padding: sm,
+      backgroundColor: line,
+      alignSelf: 'flex-start',
     },
     badgeBordered: {
-      borderRadius: sm, padding: sm, borderColor: line, borderWidth: StyleSheet.hairlineWidth, alignSelf: 'flex-start'
+      borderRadius: sm,
+      padding: sm,
+      borderColor: line,
+      borderWidth: StyleSheet.hairlineWidth,
+      alignSelf: 'flex-start',
     },
     smallRound: {
-      borderRadius: lg, height: xl, width: xl, justifyContent: 'center', alignItems: 'center',
-      backgroundColor: aux
+      borderRadius: lg,
+      height: xl,
+      width: xl,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: aux,
     },
     smallRoundBordered: {
-      borderRadius: lg, height: xl, width: xl, justifyContent: 'center', alignItems: 'center',
-      borderWidth: 1, borderColor: fg,
+      borderRadius: lg,
+      height: xl,
+      width: xl,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: fg,
       // backgroundColor: 'rgba(255,255,255,0.2)'
     },
     smallCapsule: {
-      borderRadius: md, height: xl,
+      borderRadius: md,
+      height: xl,
       paddingHorizontal: xs,
       alignItems: 'center',
       flexDirection: 'row',
-      backgroundColor: fg
+      backgroundColor: fg,
     },
     smallCapsuleBordered: {
-      borderRadius: md, height: xl,
+      borderRadius: md,
+      height: xl,
       paddingHorizontal: sm,
       alignItems: 'center',
       flexDirection: 'row',
       borderWidth: 1,
-      borderColor: 'white'
+      borderColor: 'white',
     },
     // modal
     modalContent: {
       flex: 1,
       backgroundColor: bg,
-      padding: md
+      padding: md,
     },
     modalTransContent: {
       flex: 1,
@@ -199,17 +247,17 @@ export function createStyles(theme: Theme) {
     fullModalTransContent: {
       flex: 1,
       backgroundColor: modal_bg_trans,
-      paddingTop: 64
+      paddingTop: 64,
     },
-  })
+  });
 }
 
 /**
  * 常用文字样式
  */
 export function createTextStyles(theme: Theme) {
-  const cl = colors[theme]
-  const { fg, bg, aux, mg, act, link, warn, tint } = cl
+  const cl = colors[theme];
+  const { fg, bg, aux, mg, act, link, warn, tint } = cl;
 
   // devLog('[style index tx] fg: ', fg)
 
@@ -238,8 +286,8 @@ export function createTextStyles(theme: Theme) {
     color_con: { color: cl.con },
     // 排列
     center: { textAlign: 'center' },
-    right: { textAlign: 'right' }
-  })
+    right: { textAlign: 'right' },
+  });
 }
 
 /**
@@ -249,29 +297,35 @@ export function createTextStyles(theme: Theme) {
  */
 export const whiteStyles = StyleSheet.create({
   whiteSmallRound: {
-    borderRadius: 16, height: 32, width: 32,
+    borderRadius: 16,
+    height: 32,
+    width: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.2)'
+    backgroundColor: 'rgba(255,255,255,0.2)',
   },
   whiteSmallRoundBordered: {
-    borderRadius: 16, height: 32, width: 32,
+    borderRadius: 16,
+    height: 32,
+    width: 32,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#CCC',
-    backgroundColor: 'rgba(255,255,255,0.2)'
+    backgroundColor: 'rgba(255,255,255,0.2)',
   },
   whiteSmallCapsule: {
-    borderRadius: 16, height: 32,
+    borderRadius: 16,
+    height: 32,
     paddingHorizontal: 8,
     gap: 8,
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.2)'
+    backgroundColor: 'rgba(255,255,255,0.2)',
   },
   whiteSmallCapsuleBordered: {
-    borderRadius: 16, height: 32,
+    borderRadius: 16,
+    height: 32,
     paddingHorizontal: 8,
     gap: 8,
     alignItems: 'center',
@@ -279,5 +333,5 @@ export const whiteStyles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.2)',
     borderWidth: 1,
     borderColor: '#CCC',
-  }
-})
+  },
+});
